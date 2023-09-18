@@ -1,4 +1,4 @@
-### Lid-driven cavity problem
+# Lid-driven cavity problem
 
 ## Description
 Consider a fluid inside a square cavity of dimension L bounded by four walls. All the walls except the top wall are fixed in space and time. The top wall is given a constant velocity 𝑢𝑇in the u direction, and we 
@@ -20,9 +20,9 @@ The fractional step, or time-splitting, method solves the unsteady Navier-Stokes
 
 ## Results
 Benchmarking is done against [Ghia and Ghia](https://github.com/nilot-pal/Lid-driven-cavity/blob/main/ghia1982.pdf). The project technical report can be found [here](https://github.com/nilot-pal/Lid-driven-cavity/blob/main/Technical_report.pdf).
-# 1. u velocity along vertical line through geometric centre of cavity
+### 1. u velocity along vertical line through geometric centre of cavity
 ![image](https://github.com/nilot-pal/Lid-driven-cavity/assets/72824334/f7b1d83b-5d50-4fd2-b818-5e9318253dd8)
-# 1b. v velocity along horizontal line through geometric centre of cavity
+### 2. v velocity along horizontal line through geometric centre of cavity
 ![image](https://github.com/nilot-pal/Lid-driven-cavity/assets/72824334/867552d2-42df-46fe-9c01-5fb507c7a974)
 
 

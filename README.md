@@ -9,7 +9,7 @@ question is how the u and v profiles develop as the flow reaches steady state.
 
 ![lid_driven_cavity](https://github.com/nilot-pal/Lid-driven-cavity/assets/72824334/382fa46b-ac14-42aa-8618-fbe46c894d83)
 
-The part worth reading is [Why the 32×32 grid diverged](#-why-the-3232-grid-diverged), where the
+The part worth reading is [Why the 32×32 grid diverged](#why-the-3232-grid-diverged), where the
 solver blew up at a time step that both textbook stability conditions said was safe.
 
 📄 [Technical report](Technical_report.pdf) · [Problem statement](Problem_statement.pdf) ·
@@ -64,7 +64,7 @@ dt_max = min([ dx/uT, ...                              % linear CFL
 
 The middle term is not standard, and the reason it is there is the interesting part.
 
-##  Why the 32×32 grid diverged
+## Why the 32×32 grid diverged
 
 On the 32×32 grid the solver diverged at **Δt = 0.02**. It should not have:
 

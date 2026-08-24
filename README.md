@@ -64,7 +64,7 @@ dt_max = min([ dx/uT, ...                              % linear CFL
 
 The middle term is not standard, and the reason it is there is the interesting part.
 
-## ⭐ Why the 32×32 grid diverged
+##  Why the 32×32 grid diverged
 
 On the 32×32 grid the solver diverged at **Δt = 0.02**. It should not have:
 

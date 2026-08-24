@@ -37,7 +37,7 @@ intermediate velocity that is not divergence-free; a pressure Poisson solve proj
 divergence-free space without changing vorticity. Written as a block LU factorisation this
 decouples into three steps per time step:
 
-$$A\mathbf{u}^* = \mathbf{r}, \qquad DG\,p = D\mathbf{u}^*, \qquad \mathbf{u}^{n+1} = \mathbf{u}^* - Gp$$
+$$A\mathbf{u}^\ast = \mathbf{r}, \qquad DG\,p = D\mathbf{u}^\ast, \qquad \mathbf{u}^{n+1} = \mathbf{u}^\ast - Gp$$
 
 ## Implementation
 

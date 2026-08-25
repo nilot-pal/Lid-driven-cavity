@@ -24,7 +24,7 @@ $$\nabla \cdot \mathbf{u} = 0$$
 $$\frac{\partial \mathbf{u}}{\partial t} + \nabla\cdot(\mathbf{u}\mathbf{u}) = -\nabla p + \frac{1}{Re}\nabla^2\mathbf{u}$$
 
 **Staggered grid.** Pressure at cell centres, velocities on cell faces. This falls out of the
-continuity equation itself — writing $\nabla\cdot\mathbf{u}=0$ over a control volume needs the
+continuity equation itself, writing $\nabla\cdot\mathbf{u}=0$ over a control volume needs the
 velocities on the faces. A collocated arrangement admits the checkerboard pressure mode; staggering
 removes it without needing Rhie–Chow interpolation. Momentum control volumes are therefore offset
 from the scalar ones, staggered to the negative faces so velocity indices match the cell-centred
@@ -47,7 +47,7 @@ $$A\mathbf{u}^\ast = \mathbf{r}, \qquad DG\,p = D\mathbf{u}^\ast, \qquad \mathbf
 | Pressure Poisson | **SOR**, hand-written, residual tolerance 1e−5 |
 | Poisson BCs | Neumann, imposed by zeroing the wall-side coefficients rather than using ghost values |
 | Steady-state criterion | L2 norm of the velocity change per step < 1e−8 |
-| Time step | not fixed — chosen from three stability limits, see below |
+| Time step | not fixed: chosen from three stability limits, see below |
 
 Everything is in one MATLAB file with no toolbox dependencies. The Poisson solve is written out
 rather than handed to `\`, because the point of the exercise was the discretisation.
@@ -73,7 +73,7 @@ On the 32×32 grid the solver diverged at **Δt = 0.02**. It should not have:
 | Linear CFL, $\Delta t \le \Delta x/u$ | 0.0313 |
 | 2D Neumann, $\Delta t \le 0.25\,\Delta x^2/\nu$ | 0.0244 |
 
-Δt = 0.02 is below both. The obvious conclusions — a coding error, or an unstable scheme — were
+Δt = 0.02 is below both. The obvious conclusions (a coding error, or an unstable scheme) were
 both wrong.
 
 Higher-order explicit time integrators (Adams–Bashforth, Runge–Kutta) carry a **non-linear**
@@ -83,7 +83,7 @@ Burgers and Euler equations. For 2nd-order Adams–Bashforth:
 
 $$\Delta t \le 2^{2/3} C^{1/3} \left(\frac{\Delta x}{u}\right)^{4/3}, \qquad 0 < C \le 1$$
 
-At 32×32 with $C = 1$ this gives **Δt ≤ 0.0156** — below the 0.02 that failed. The divergence was
+At 32×32 with $C = 1$ this gives **Δt ≤ 0.0156**, below the 0.02 that failed. The divergence was
 correct behaviour under a condition neither textbook criterion captures.
 
 That derived limit is the middle term in `dt_max` above, so the solver now picks a stable step on
@@ -102,7 +102,7 @@ Same 128×128 grid, two Reynolds numbers:
 At Re = 100 the viscous limit binds; at Re = 1000 the non-linear CFL does. The viscous limit scales
 as $\Delta x^2/\nu$ so it relaxes as Re rises, while the non-linear CFL is independent of Re. Which
 is the physical statement that low-Re flow is stability-limited by diffusion and high-Re flow by
-convection — so a solver hard-coded to the viscous limit would be needlessly slow at Re = 100 and
+convection, so a solver hard-coded to the viscous limit would be needlessly slow at Re = 100 and
 **unstable at Re = 1000**.
 
 ## Validation against Ghia et al. (1982)
@@ -116,7 +116,7 @@ At Re = 100, centreline velocities against the tabulated benchmark:
 ![v velocity](https://github.com/nilot-pal/Lid-driven-cavity/assets/72824334/867552d2-42df-46fe-9c01-5fb507c7a974)
 
 The u profile matches closely. The v profile reproduces the oscillatory shape but the values agree
-less well — reported as found rather than tuned away.
+less well, reported as found rather than tuned away.
 
 ## Cost scaling
 
@@ -124,14 +124,14 @@ CPU time to convergence against grid resolution follows a power law $y = a x^{b}
 MATLAB across 32², 64² and 128² at three time steps each. The exponent runs from **3.08** at the
 smallest time step to **4.74** at the largest.
 
-Above the ideal ~3 (cells × steps, with steps growing as the stability limit tightens) because the
-SOR Poisson solve needs more sweeps per step as the grid refines — the iterative solve, not the
+Above the ideal ~3 (cells × steps, with steps growing as the stability limit tightens), because the
+SOR Poisson solve needs more sweeps per step as the grid refines: the iterative solve, not the
 discretisation, is what makes refinement expensive here.
 
 ## Running it
 
-Open [`Codes/lid_driven_cavity_2d.m`](Codes/lid_driven_cavity_2d.m) and run. Set `nx`, `ny` for
-resolution and `nu` for Reynolds number — as committed it is 128 × 128 at `nu = 0.001`, i.e.
+Open [`Codes/lid_driven_cavity_2d.m`](Codes/lid_driven_cavity_2d.m), and run. Set `nx`, `ny` for
+resolution and `nu` for Reynolds number: as committed it is 128 × 128 at `nu = 0.001`, i.e.
 **Re = 1000**. The validation plots above are Re = 100, which is `nu = 0.01`.
 
 No toolboxes required.

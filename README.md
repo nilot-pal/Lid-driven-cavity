@@ -1,8 +1,11 @@
 # Lid-driven cavity
 
 A finite-volume incompressible Navier–Stokes solver on a staggered grid, written from scratch in
-MATLAB and validated against Ghia, Ghia and Shin (1982). Term project for **ME 6434 Advanced CFD**,
-Virginia Tech, Spring 2022 (Prof. Danesh Tafti).
+MATLAB and validated against Ghia, Ghia and Shin (1982). The solver diverged at a time step that
+both textbook stability conditions said was safe; finding out why is the part of this worth
+reading.
+
+Written for **ME 6434 Advanced CFD**, Virginia Tech, Spring 2022 (Prof. Danesh Tafti).
 
 Fluid sits in a square cavity. Three walls are fixed; the top wall slides at constant velocity. The
 question is how the u and v profiles develop as the flow reaches steady state.
